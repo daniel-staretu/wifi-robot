@@ -1,1 +1,1 @@
-This code runs on an ESP32 microcontroller, connects to your local Wi-Fi network, hosts a web page with buttons and a speed slider, and uses HTTP requests to control the direction and speed of the robot through the use of two DC motors.
+This code runs on an ESP32 microcontroller, connects to your local Wi-Fi network, hosts a web page with direction buttons and a speed slider, and uses HTTP requests to control the direction and speed of the robot through the use of two DC motors.
