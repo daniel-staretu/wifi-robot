@@ -4,21 +4,18 @@
 // Replace with your network credentials
 const char* ssid     = "ssid";
 const char* password = "password";
+//--------------------------------------
 
-// Create an instance of the WebServer on port 80
 WebServer server(80);
 
-// Motor A
 int motor1Pin1 = 25; 
 int motor1Pin2 = 26; 
 int enable1Pin = 25;
 
-// Motor B
 int motor2Pin1 = 14; 
 int motor2Pin2 = 12; 
-int enable2Pin = 13; //PWM
+int enable2Pin = 13;
 
-// Setting PWM properties
 const int freq = 30000;
 const int resolution = 8;
 int dutyCycle = 0;
@@ -136,21 +133,17 @@ void handleSpeed() {
 void setup() {
   Serial.begin(115200);
 
-  // Set the Motor pins as outputs
   pinMode(motor1Pin1, OUTPUT);
   pinMode(motor1Pin2, OUTPUT);
   pinMode(motor2Pin1, OUTPUT);
   pinMode(motor2Pin2, OUTPUT);
 
-  // Configure PWM Pins
   ledcAttach(enable1Pin, freq, resolution);
   ledcAttach(enable2Pin, freq, resolution);
-    
-  // Initialize PWM with 0 duty cycle
+
   ledcWrite(enable1Pin, 0);
   ledcWrite(enable2Pin, 0);
-  
-  // Connect to Wi-Fi
+ 
   Serial.print("Connecting to ");
   Serial.println(ssid);
   WiFi.begin(ssid, password);
@@ -163,7 +156,6 @@ void setup() {
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
 
-  // Define routes
   server.on("/", handleRoot);
   server.on("/forward", handleForward);
   server.on("/left", handleLeft);
@@ -172,10 +164,10 @@ void setup() {
   server.on("/reverse", handleReverse);
   server.on("/speed", handleSpeed);
 
-  // Start the server
   server.begin();
 }
 
 void loop() {
   server.handleClient();
 }
+
